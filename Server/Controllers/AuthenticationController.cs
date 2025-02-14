@@ -72,14 +72,6 @@ namespace Server.Controllers
             return Ok(result);
         }
 
-        [HttpGet("user-image/{id}")]
-        [Authorize]
-        public async Task<IActionResult> GetUserImage(int id)
-        {
-            var result = await accountInterface.GetUserImage(id);
-            return Ok(result);
-        }
-
         [HttpPut("update-profile")]
         [Authorize]
         public async Task<IActionResult> UpdateProfile(UserProfile profile)
