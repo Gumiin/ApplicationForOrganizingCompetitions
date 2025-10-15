@@ -1,0 +1,1 @@
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\Client\obj\Debug\net8.0\staticwebassets.build.json

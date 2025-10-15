@@ -1,0 +1,13 @@
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\bin\Debug\net8.0\BaseLibrary.deps.json
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\bin\Debug\net8.0\BaseLibrary.dll
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\bin\Debug\net8.0\BaseLibrary.pdb
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.AssemblyInfo.cs
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.dll
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\refint\BaseLibrary.dll
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.pdb
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\ref\BaseLibrary.dll
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\ApplicationForOrganizingCompetitions\BaseLibrary\obj\Debug\net8.0\BaseLibrary.sourcelink.json
