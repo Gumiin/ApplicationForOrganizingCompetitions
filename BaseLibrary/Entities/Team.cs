@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace BaseLibrary.Entities
 {
-    public class Round : BaseEntity
+    public class Team : BaseEntity
     {
-        public int CompetitionId { get; set; }
-        public Competition? Competition { get; set; }
+        public string? Club { get; set; }
+
+        public ICollection<Athlete> Members { get; set; } = new List<Athlete>();
     }
+
 }

@@ -11,16 +11,54 @@ namespace ServerLibrary.Repositories.Contracts
 {
     public interface ICompetitionsData
     {
-        Task<GeneralResponse> GetCompetitions();
-        Task<GeneralResponse> GetCompetition(int id);
-        Task<GeneralResponse> CreateCompetition(Competition competition);
-        Task<GeneralResponse> UpdateCompetition(int id, Competition competition);
-        Task<GeneralResponse> DeleteCompetition(int id);
-        Task<GeneralResponse> AddStatus(Status status);
-        Task<GeneralResponse> UpdateCompetitionStatus(int id, int statusId);
-        Task<GeneralResponse> AddRound(int competitionId, Round round);
-        Task<GeneralResponse> AddParticipant(int competitionId, Participant participant);
-        Task<GeneralResponse> AddPoints(int roundId, Points points);
-        Task<GeneralResponse> UpdateSumPointsAndPlace(int id, double sumPoints, int place);
+        // --- COMPETITIONS ---
+
+        Task<GeneralResponse> GetAllCompetitionsAsync();
+        Task<GeneralResponse> GetCompetitionByIdAsync(int id);
+        Task<GeneralResponse> CreateCompetitionAsync(Competition competition);
+        Task<GeneralResponse> UpdateCompetitionAsync(Competition competition);
+        Task<GeneralResponse> DeleteCompetitionAsync(int id);
+        Task<GeneralResponse> PublishCompetitionAsync(int id, bool publish);
+
+
+        // --- EVENTS (konkurencje) ---
+
+        Task<GeneralResponse> GetEventsByCompetitionAsync(int competitionId);
+        Task<GeneralResponse> GetEventByIdAsync(int id);
+        Task<GeneralResponse> CreateEventAsync(Event @event);
+        Task<GeneralResponse> UpdateEventAsync(Event @event);
+        Task<GeneralResponse> DeleteEventAsync(int id);
+
+
+        // --- STAGES (etapy) ---
+
+        Task<GeneralResponse> GetStagesByEventAsync(int eventId);
+        Task<GeneralResponse> CreateStageAsync(EventStage stage);
+        Task<GeneralResponse> UpdateStageAsync(EventStage stage);
+        Task<GeneralResponse> DeleteStageAsync(int id);
+
+
+        // --- JUDGES (sędziowie) ---
+
+        Task<GeneralResponse> GetJudgesByCompetitionAsync(int competitionId);
+        Task<GeneralResponse> GetJudgesByEventAsync(int eventId);
+        Task<GeneralResponse> AssignJudgeToCompetitionAsync(int competitionId, int judgeId);
+        Task<GeneralResponse> AssignJudgeToEventAsync(int eventId, int judgeId);
+        Task<GeneralResponse> RemoveJudgeAsync(int judgeId);
+
+
+        // --- RESULTS (wyniki) ---
+
+        Task<GeneralResponse> GetResultsByStageAsync(int stageId);
+        Task<GeneralResponse> GetResultByIdAsync(int id);
+        Task<GeneralResponse> CreateResultAsync(Result result);
+        Task<GeneralResponse> UpdateResultAsync(Result result);
+        Task<GeneralResponse> DeleteResultAsync(int id);
+        Task<GeneralResponse> PublishResultsAsync(int stageId);
+
+
+        // --- AUDIT TRAIL ---
+
+        Task<GeneralResponse> GetAuditTrailByResultAsync(int resultId);
     }
 }

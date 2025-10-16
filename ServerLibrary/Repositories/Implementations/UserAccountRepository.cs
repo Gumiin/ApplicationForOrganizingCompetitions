@@ -70,7 +70,7 @@ namespace ServerLibrary.Repositories.Implementations
             if (getUserRole is null) return new LoginResponse(false, "user role not found");
 
             var getRoleName = await FindRoleName(getUserRole.RoleId);
-            if (getUserRole is null) return new LoginResponse(false, "user role not found");
+            if (getRoleName is null) return new LoginResponse(false, "user role not found");
 
             string jwtToken = GenerateToken(applicationUser, getRoleName!.Name!);
             string refreshToken = GenerateRefreshToken();
@@ -104,7 +104,7 @@ namespace ServerLibrary.Repositories.Implementations
                 issuer: config.Value.Issuer,
                 audience: config.Value.Audience,
                 claims: userClaims,
-                expires: DateTime.Now.AddSeconds(2),
+                expires: DateTime.UtcNow.AddMinutes(15),
                 signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -133,7 +133,7 @@ namespace ServerLibrary.Repositories.Implementations
 
             //get user details
             var user = await appDbContext.ApplicationUsers.FirstOrDefaultAsync(_ => _.Id == findToken.UserId);
-            if (user is null) return new LoginResponse(false, "Refesh token could not be generated because user not found");
+            if (user is null) return new LoginResponse(false, "Refresh token could not be generated because user not found");
 
             var userRole = await FindUserRole(user.Id);
             var roleName = await FindRoleName(userRole.RoleId);
@@ -141,7 +141,7 @@ namespace ServerLibrary.Repositories.Implementations
             string refreshToken = GenerateRefreshToken();
 
             var updateRefreshToken = await appDbContext.RefreshTokenInfos.FirstOrDefaultAsync(_ => _.UserId == user.Id);
-            if (updateRefreshToken is null) return new LoginResponse(false, "Refesh token could not be generated because user has not signed in");
+            if (updateRefreshToken is null) return new LoginResponse(false, "Refresh token could not be generated because user has not signed in");
 
             updateRefreshToken.Token = refreshToken;
             await appDbContext.SaveChangesAsync();
@@ -179,6 +179,7 @@ namespace ServerLibrary.Repositories.Implementations
         public async Task<GeneralResponse> DeleteUser(int id)
         {
             var user = await appDbContext.ApplicationUsers.FirstOrDefaultAsync(u => u.Id == id);
+            if (user is null) return new GeneralResponse(false, "User not found");
             appDbContext.ApplicationUsers.Remove(user!);
             await appDbContext.SaveChangesAsync();
             return new GeneralResponse(true, "User successfully deleted");
