@@ -71,6 +71,23 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = jwtSection.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSection.Key!))
     };
+    options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+    {
+        OnChallenge = context =>
+        {
+            // Zapobiega domyœlnej odpowiedzi
+            context.HandleResponse();
+
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            context.Response.ContentType = "application/json";
+            var result = System.Text.Json.JsonSerializer.Serialize(new
+            {
+                Success = false,
+                Message = "Brak autoryzacji lub nieprawid³owy token."
+            });
+            return context.Response.WriteAsync(result);
+        }
+    };
 });
 
 
