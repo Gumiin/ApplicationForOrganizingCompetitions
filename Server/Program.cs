@@ -75,6 +75,7 @@ builder.Services.AddAuthentication(options =>
 
 
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
+builder.Services.AddScoped<ICompetitionsData, CompetitionsDataRepository>();
 
 
 var app = builder.Build();

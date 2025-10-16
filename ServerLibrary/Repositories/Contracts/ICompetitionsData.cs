@@ -55,10 +55,5 @@ namespace ServerLibrary.Repositories.Contracts
         Task<GeneralResponse> UpdateResultAsync(Result result);
         Task<GeneralResponse> DeleteResultAsync(int id);
         Task<GeneralResponse> PublishResultsAsync(int stageId);
-
-
-        // --- AUDIT TRAIL ---
-
-        Task<GeneralResponse> GetAuditTrailByResultAsync(int resultId);
     }
 }

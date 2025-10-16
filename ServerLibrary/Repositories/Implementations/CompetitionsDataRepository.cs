@@ -313,30 +313,10 @@ namespace ServerLibrary.Repositories.Implementations
 
         public async Task<GeneralResponse> PublishResultsAsync(int stageId)
         {
-            // Twoje encje Result nie mają flagi Published.
-            // Jeśli chcesz mieć publikację, dodaj bool Published w Result.
-            // Poniżej przykładowo: sprawdzenie istnienia i zwrot OK.
             var exists = await appDbContext.EventStages.AsNoTracking().AnyAsync(_ => _.Id == stageId);
             if (!exists) return GeneralResponse.NotFound("Stage");
 
-            // Tutaj można dodać własną logikę biznesową publikacji (np. zapis do AuditTrail).
             return GeneralResponse.Ok("Results publish action completed");
-        }
-
-        // --- AUDIT TRAIL ---
-
-        public async Task<GeneralResponse> GetAuditTrailByResultAsync(int resultId)
-        {
-            var resultExists = await appDbContext.Results.AsNoTracking().AnyAsync(_ => _.Id == resultId);
-            if (!resultExists) return GeneralResponse.NotFound("Result");
-
-            var items = await appDbContext.AuditTrails
-                .AsNoTracking()
-                .Where(_ => _.ResultId == resultId)
-                .OrderByDescending(_ => _.ChangedAt)
-                .ToListAsync();
-
-            return GeneralResponse.Ok("OK", items);
         }
     }
 }

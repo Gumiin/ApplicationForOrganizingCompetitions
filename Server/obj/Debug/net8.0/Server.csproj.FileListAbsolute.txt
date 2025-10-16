@@ -363,3 +363,4 @@ D:\Nowy folder\ApplicationForOrganizingCompetitions\Server\obj\Debug\net8.0\refi
 D:\Nowy folder\ApplicationForOrganizingCompetitions\Server\obj\Debug\net8.0\Server.pdb
 D:\Nowy folder\ApplicationForOrganizingCompetitions\Server\obj\Debug\net8.0\Server.genruntimeconfig.cache
 D:\Nowy folder\ApplicationForOrganizingCompetitions\Server\obj\Debug\net8.0\ref\Server.dll
+D:\Nowy folder\ApplicationForOrganizingCompetitions\Server\bin\Debug\net8.0\Newtonsoft.Json.dll

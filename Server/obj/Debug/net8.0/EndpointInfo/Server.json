@@ -10,6 +10,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_Register",
         "requestBody": {
           "content": {
             "application/json": {
@@ -41,6 +42,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_Login",
         "requestBody": {
           "content": {
             "application/json": {
@@ -72,6 +74,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_RefreshToken",
         "requestBody": {
           "content": {
             "application/json": {
@@ -103,6 +106,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_GetUsers",
         "responses": {
           "200": {
             "description": "OK"
@@ -115,6 +119,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_UpdateUser",
         "requestBody": {
           "content": {
             "application/json": {
@@ -141,23 +146,12 @@
         }
       }
     },
-    "/api/Authentication/roles": {
-      "get": {
-        "tags": [
-          "Authentication"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Authentication/delete-user/{id}": {
       "delete": {
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_DeleteUser",
         "parameters": [
           {
             "name": "id",
@@ -181,6 +175,7 @@
         "tags": [
           "Authentication"
         ],
+        "operationId": "Authentication_UpdateProfile",
         "requestBody": {
           "content": {
             "application/json": {
@@ -207,60 +202,38 @@
         }
       }
     },
-    "/api/Competition/get-competitions": {
+    "/api/Competitions": {
       "get": {
         "tags": [
-          "Competition"
+          "Competitions"
         ],
+        "operationId": "Competitions_GetAll",
         "responses": {
           "200": {
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/Competition/get-competition": {
-      "get": {
-        "tags": [
-          "Competition"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Competition/create-competition": {
+      },
       "post": {
         "tags": [
-          "Competition"
+          "Competitions"
         ],
+        "operationId": "Competitions_Create",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionCreateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionCreateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionCreateDto"
               }
             }
           }
@@ -272,15 +245,39 @@
         }
       }
     },
-    "/api/Competition/update-competition": {
-      "put": {
+    "/api/Competitions/{id}": {
+      "get": {
         "tags": [
-          "Competition"
+          "Competitions"
         ],
+        "operationId": "Competitions_GetById",
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Competitions"
+        ],
+        "operationId": "Competitions_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -291,17 +288,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Competition"
+                "$ref": "#/components/schemas/CompetitionUpdateDto"
               }
             }
           }
@@ -311,13 +308,12 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/api/Competition/delete-competition/{id}": {
+      },
       "delete": {
         "tags": [
-          "Competition"
+          "Competitions"
         ],
+        "operationId": "Competitions_Delete",
         "parameters": [
           {
             "name": "id",
@@ -336,42 +332,12 @@
         }
       }
     },
-    "/api/Competition/add-status": {
-      "post": {
-        "tags": [
-          "Competition"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Status"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Status"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Status"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Competition/update-competition-status/{id}": {
+    "/api/Competitions/{id}/publish": {
       "put": {
         "tags": [
-          "Competition"
+          "Competitions"
         ],
+        "operationId": "Competitions_Publish",
         "parameters": [
           {
             "name": "id",
@@ -381,16 +347,27 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "statusId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishCompetitionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishCompetitionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishCompetitionDto"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -398,40 +375,23 @@
         }
       }
     },
-    "/api/Competition/add-round": {
-      "post": {
+    "/api/Events/by-competition/{competitionId}": {
+      "get": {
         "tags": [
-          "Competition"
+          "Events"
         ],
+        "operationId": "Events_GetByCompetition",
         "parameters": [
           {
             "name": "competitionId",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Round"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Round"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Round"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "OK"
@@ -439,113 +399,536 @@
         }
       }
     },
-    "/api/Competition/add-participant": {
-      "post": {
+    "/api/Events/{id}": {
+      "get": {
         "tags": [
-          "Competition"
+          "Events"
         ],
-        "parameters": [
-          {
-            "name": "competitionId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Participant"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Participant"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Participant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Competition/add-points": {
-      "post": {
-        "tags": [
-          "Competition"
-        ],
-        "parameters": [
-          {
-            "name": "roundId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Points"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Points"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Points"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Competition/update-sum-points-and-place": {
-      "put": {
-        "tags": [
-          "Competition"
-        ],
+        "operationId": "Events_GetById",
         "parameters": [
           {
             "name": "id",
-            "in": "query",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
             }
-          },
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "Events_Update",
+        "parameters": [
           {
-            "name": "sumPoints",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
             "schema": {
-              "type": "number",
-              "format": "double"
+              "type": "integer",
+              "format": "int32"
             }
-          },
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "Events_Delete",
+        "parameters": [
           {
-            "name": "place",
-            "in": "query",
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Events": {
+      "post": {
+        "tags": [
+          "Events"
+        ],
+        "operationId": "Events_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Judges/by-competition/{competitionId}": {
+      "get": {
+        "tags": [
+          "Judges"
+        ],
+        "operationId": "Judges_GetByCompetition",
+        "parameters": [
+          {
+            "name": "competitionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Judges/by-event/{eventId}": {
+      "get": {
+        "tags": [
+          "Judges"
+        ],
+        "operationId": "Judges_GetByEvent",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Judges/assign-competition": {
+      "post": {
+        "tags": [
+          "Judges"
+        ],
+        "operationId": "Judges_AssignToCompetition",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToCompetitionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToCompetitionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToCompetitionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Judges/assign-event": {
+      "post": {
+        "tags": [
+          "Judges"
+        ],
+        "operationId": "Judges_AssignToEvent",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToEventDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToEventDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignJudgeToEventDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Judges/{judgeId}": {
+      "delete": {
+        "tags": [
+          "Judges"
+        ],
+        "operationId": "Judges_Remove",
+        "parameters": [
+          {
+            "name": "judgeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Results/by-stage/{stageId}": {
+      "get": {
+        "tags": [
+          "Results"
+        ],
+        "operationId": "Results_GetByStage",
+        "parameters": [
+          {
+            "name": "stageId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Results/{id}": {
+      "get": {
+        "tags": [
+          "Results"
+        ],
+        "operationId": "Results_GetById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Results"
+        ],
+        "operationId": "Results_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Results"
+        ],
+        "operationId": "Results_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Results": {
+      "post": {
+        "tags": [
+          "Results"
+        ],
+        "operationId": "Results_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResultCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Stages/by-event/{eventId}": {
+      "get": {
+        "tags": [
+          "Stages"
+        ],
+        "operationId": "Stages_GetByEvent",
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Stages": {
+      "post": {
+        "tags": [
+          "Stages"
+        ],
+        "operationId": "Stages_Create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageCreateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageCreateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageCreateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Stages/{id}": {
+      "put": {
+        "tags": [
+          "Stages"
+        ],
+        "operationId": "Stages_Update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageUpdateDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageUpdateDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/StageUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Stages"
+        ],
+        "operationId": "Stages_Delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Stages/{stageId}/publish-results": {
+      "post": {
+        "tags": [
+          "Stages"
+        ],
+        "operationId": "Stages_PublishResults",
+        "parameters": [
+          {
+            "name": "stageId",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -562,45 +945,61 @@
   },
   "components": {
     "schemas": {
-      "ApplicationUser": {
+      "AssignJudgeToCompetitionDto": {
         "type": "object",
         "properties": {
-          "id": {
+          "competitionId": {
             "type": "integer",
             "format": "int32"
           },
-          "fullname": {
+          "judgeId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AssignJudgeToEventDto": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "judgeId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CompetitionCreateDto": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "description": {
             "type": "string",
             "nullable": true
           },
-          "password": {
+          "startDate": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
-          "address": {
+          "endDate": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
-          "country": {
+          "location": {
             "type": "string",
-            "nullable": true
-          },
-          "telephoneNumber": {
-            "type": "string",
-            "format": "tel",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Competition": {
-        "required": [
-          "name"
-        ],
+      "CompetitionUpdateDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -608,67 +1007,74 @@
             "format": "int32"
           },
           "name": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "organizerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "applicationUser": {
-            "$ref": "#/components/schemas/ApplicationUser"
-          },
-          "statusId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "$ref": "#/components/schemas/Status"
-          },
-          "maxCompetitors": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roundsAmount": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "description": {
             "type": "string",
             "nullable": true
           },
-          "localization": {
-            "type": "string",
-            "nullable": true
-          },
-          "address": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactNumber": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactEmail": {
-            "type": "string",
-            "nullable": true
-          },
-          "contactPerson": {
-            "type": "string",
-            "nullable": true
-          },
-          "winnerID": {
-            "type": "integer",
-            "format": "int32"
-          },
           "startDate": {
             "type": "string",
-            "format": "date-time",
-            "nullable": true
+            "format": "date-time"
           },
           "endDate": {
             "type": "string",
-            "format": "date-time",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "isPublished": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventCreateDto": {
+        "type": "object",
+        "properties": {
+          "competitionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventUpdateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "competitionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -716,65 +1122,11 @@
         },
         "additionalProperties": false
       },
-      "Participant": {
-        "required": [
-          "name"
-        ],
+      "PublishCompetitionDto": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "applicationUserId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "applicationUser": {
-            "$ref": "#/components/schemas/ApplicationUser"
-          },
-          "sumPoints": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "place": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Points": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "amount": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "roundId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "round": {
-            "$ref": "#/components/schemas/Round"
-          },
-          "participantId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "participant": {
-            "$ref": "#/components/schemas/Participant"
+          "publish": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -821,43 +1173,136 @@
         },
         "additionalProperties": false
       },
-      "Round": {
-        "required": [
-          "name"
-        ],
+      "ResultCreateDto": {
         "type": "object",
         "properties": {
-          "id": {
+          "eventStageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "athleteId": {
             "type": "integer",
             "format": "int32"
           },
           "name": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
-          "competitionId": {
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
-          "competition": {
-            "$ref": "#/components/schemas/Competition"
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Status": {
-        "required": [
-          "name"
-        ],
+      "ResultUpdateDto": {
         "type": "object",
         "properties": {
           "id": {
             "type": "integer",
             "format": "int32"
           },
+          "eventStageId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "athleteId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "name": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "nullable": true
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "note": {
+            "type": "string",
+            "nullable": true
+          },
+          "modifiedBy": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StageCreateDto": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scheduledStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StageUpdateDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "eventId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "scheduledStart": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false

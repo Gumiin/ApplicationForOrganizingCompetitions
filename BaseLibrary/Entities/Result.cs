@@ -24,7 +24,6 @@ namespace BaseLibrary.Entities
         public string? ModifiedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
 
-        public ICollection<AuditTrail> AuditTrails { get; set; } = new List<AuditTrail>();
     }
 
 }

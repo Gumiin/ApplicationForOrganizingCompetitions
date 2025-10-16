@@ -13,7 +13,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_DeleteUser"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -29,7 +30,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_Login"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -45,7 +47,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_RefreshToken"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -61,17 +64,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.AuthenticationController",
-    "Method": "GetRoles",
-    "RelativePath": "api/Authentication/roles",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_Register"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -87,7 +81,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_UpdateProfile"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -103,7 +98,8 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_UpdateUser"
   },
   {
     "ContainingType": "Server.Controllers.AuthenticationController",
@@ -113,107 +109,80 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Authentication_GetUsers"
   },
   {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "AddParticipant",
-    "RelativePath": "api/Competition/add-participant",
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Competitions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_GetAll"
+  },
+  {
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "Create",
+    "RelativePath": "api/Competitions",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "competitionId",
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.CompetitionCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_Create"
+  },
+  {
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "GetById",
+    "RelativePath": "api/Competitions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_GetById"
+  },
+  {
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "Update",
+    "RelativePath": "api/Competitions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       },
       {
-        "Name": "participant",
-        "Type": "BaseLibrary.Entities.Participant",
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.CompetitionUpdateDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_Update"
   },
   {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "AddPoints",
-    "RelativePath": "api/Competition/add-points",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "roundId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "points",
-        "Type": "BaseLibrary.Entities.Points",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "AddRound",
-    "RelativePath": "api/Competition/add-round",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "competitionId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "round",
-        "Type": "BaseLibrary.Entities.Round",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "AddStatus",
-    "RelativePath": "api/Competition/add-status",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "status",
-        "Type": "BaseLibrary.Entities.Status",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "CreateCompetition",
-    "RelativePath": "api/Competition/create-competition",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "competition",
-        "Type": "BaseLibrary.Entities.Competition",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "DeleteCompetition",
-    "RelativePath": "api/Competition/delete-competition/{id}",
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "Delete",
+    "RelativePath": "api/Competitions/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -224,59 +193,13 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_Delete"
   },
   {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "GetCompetition",
-    "RelativePath": "api/Competition/get-competition",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "GetCompetitions",
-    "RelativePath": "api/Competition/get-competitions",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "UpdateCompetition",
-    "RelativePath": "api/Competition/update-competition",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "competition",
-        "Type": "BaseLibrary.Entities.Competition",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "UpdateCompetitionStatus",
-    "RelativePath": "api/Competition/update-competition-status/{id}",
+    "ContainingType": "Server.Controllers.CompetitionsController",
+    "Method": "Publish",
+    "RelativePath": "api/Competitions/{id}/publish",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -287,17 +210,52 @@
         "IsRequired": true
       },
       {
-        "Name": "statusId",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "body",
+        "Type": "BaseLibrary.DTOs.PublishCompetitionDto",
+        "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Competitions_Publish"
   },
   {
-    "ContainingType": "Server.Controllers.CompetitionController",
-    "Method": "UpdateSumPointsAndPlace",
-    "RelativePath": "api/Competition/update-sum-points-and-place",
+    "ContainingType": "Server.Controllers.EventsController",
+    "Method": "Create",
+    "RelativePath": "api/Events",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.EventCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Events_Create"
+  },
+  {
+    "ContainingType": "Server.Controllers.EventsController",
+    "Method": "GetById",
+    "RelativePath": "api/Events/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Events_GetById"
+  },
+  {
+    "ContainingType": "Server.Controllers.EventsController",
+    "Method": "Update",
+    "RelativePath": "api/Events/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -305,19 +263,314 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
-        "Name": "sumPoints",
-        "Type": "System.Double",
-        "IsRequired": false
-      },
-      {
-        "Name": "place",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.EventUpdateDto",
+        "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [],
+    "EndpointName": "Events_Update"
+  },
+  {
+    "ContainingType": "Server.Controllers.EventsController",
+    "Method": "Delete",
+    "RelativePath": "api/Events/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Events_Delete"
+  },
+  {
+    "ContainingType": "Server.Controllers.EventsController",
+    "Method": "GetByCompetition",
+    "RelativePath": "api/Events/by-competition/{competitionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "competitionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Events_GetByCompetition"
+  },
+  {
+    "ContainingType": "Server.Controllers.JudgesController",
+    "Method": "Remove",
+    "RelativePath": "api/Judges/{judgeId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "judgeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Judges_Remove"
+  },
+  {
+    "ContainingType": "Server.Controllers.JudgesController",
+    "Method": "AssignToCompetition",
+    "RelativePath": "api/Judges/assign-competition",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.AssignJudgeToCompetitionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Judges_AssignToCompetition"
+  },
+  {
+    "ContainingType": "Server.Controllers.JudgesController",
+    "Method": "AssignToEvent",
+    "RelativePath": "api/Judges/assign-event",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.AssignJudgeToEventDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Judges_AssignToEvent"
+  },
+  {
+    "ContainingType": "Server.Controllers.JudgesController",
+    "Method": "GetByCompetition",
+    "RelativePath": "api/Judges/by-competition/{competitionId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "competitionId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Judges_GetByCompetition"
+  },
+  {
+    "ContainingType": "Server.Controllers.JudgesController",
+    "Method": "GetByEvent",
+    "RelativePath": "api/Judges/by-event/{eventId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Judges_GetByEvent"
+  },
+  {
+    "ContainingType": "Server.Controllers.ResultsController",
+    "Method": "Create",
+    "RelativePath": "api/Results",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.ResultCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Results_Create"
+  },
+  {
+    "ContainingType": "Server.Controllers.ResultsController",
+    "Method": "GetById",
+    "RelativePath": "api/Results/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Results_GetById"
+  },
+  {
+    "ContainingType": "Server.Controllers.ResultsController",
+    "Method": "Update",
+    "RelativePath": "api/Results/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.ResultUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Results_Update"
+  },
+  {
+    "ContainingType": "Server.Controllers.ResultsController",
+    "Method": "Delete",
+    "RelativePath": "api/Results/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Results_Delete"
+  },
+  {
+    "ContainingType": "Server.Controllers.ResultsController",
+    "Method": "GetByStage",
+    "RelativePath": "api/Results/by-stage/{stageId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Results_GetByStage"
+  },
+  {
+    "ContainingType": "Server.Controllers.StagesController",
+    "Method": "Create",
+    "RelativePath": "api/Stages",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.StageCreateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Stages_Create"
+  },
+  {
+    "ContainingType": "Server.Controllers.StagesController",
+    "Method": "Update",
+    "RelativePath": "api/Stages/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "BaseLibrary.DTOs.StageUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Stages_Update"
+  },
+  {
+    "ContainingType": "Server.Controllers.StagesController",
+    "Method": "Delete",
+    "RelativePath": "api/Stages/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Stages_Delete"
+  },
+  {
+    "ContainingType": "Server.Controllers.StagesController",
+    "Method": "PublishResults",
+    "RelativePath": "api/Stages/{stageId}/publish-results",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stageId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Stages_PublishResults"
+  },
+  {
+    "ContainingType": "Server.Controllers.StagesController",
+    "Method": "GetByEvent",
+    "RelativePath": "api/Stages/by-event/{eventId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [],
+    "EndpointName": "Stages_GetByEvent"
   }
 ]

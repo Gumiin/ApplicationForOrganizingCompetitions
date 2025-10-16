@@ -19,7 +19,6 @@ namespace ServerLibrary.Data
         public DbSet<Athlete> Athletes { get; set; }
         public DbSet<EventRegistration> EventRegistrations { get; set; }
         public DbSet<Result> Results { get; set; }
-        public DbSet<AuditTrail> AuditTrails { get; set; }
         public DbSet<Judge> Judges { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
